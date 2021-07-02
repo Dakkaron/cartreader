@@ -849,9 +849,19 @@ void writeFlash_GB() {
     delay(100);
 
     // ID command sequence
+    /*
     writeByte_GB(0x555, 0xaa);
     writeByte_GB(0x2aa, 0x55);
     writeByte_GB(0x555, 0x90);
+    */
+    writeByte_GB(0xAAA, 0xA9);
+    writeByte_GB(0x555, 0x56);
+    writeByte_GB(0xAAA, 0xA9);
+    /*
+    [ 0xAAA, 0xA9 ],
+    [ 0x555, 0x56 ],
+    [ 0xAAA, 0x90 ]
+    */
 
     dataIn_GB();
 
@@ -918,12 +928,28 @@ void writeFlash_GB() {
     display_Update();
 
     // Erase flash
+    /*
     writeByte_GB(0x555, 0xaa);
     writeByte_GB(0x2aa, 0x55);
     writeByte_GB(0x555, 0x80);
     writeByte_GB(0x555, 0xaa);
     writeByte_GB(0x2aa, 0x55);
     writeByte_GB(0x555, 0x10);
+    */
+    writeByte_GB(0xAAA, 0xA9);
+    writeByte_GB(0x555, 0x56);
+    writeByte_GB(0xAAA, 0x80);
+    writeByte_GB(0xAAA, 0xA9);
+    writeByte_GB(0x555, 0x56);
+    writeByte_GB(0xAAA, 0x10);
+    /*
+      [ 0xAAA, 0xA9 ],
+      [ 0x555, 0x56 ],
+      [ 0xAAA, 0x80 ],
+      [ 0xAAA, 0xA9 ],
+      [ 0x555, 0x56 ],
+      [ 0xAAA, 0x10 ]
+    */
 
     dataIn_GB();
 
@@ -996,9 +1022,20 @@ void writeFlash_GB() {
 
         for (int currByte = 0; currByte < 512; currByte++) {
           // Write command sequence
+          /*
           writeByte_GB(0x555, 0xaa);
           writeByte_GB(0x2aa, 0x55);
           writeByte_GB(0x555, 0xa0);
+          */
+          writeByte_GB(0xAAA, 0xA9);
+          writeByte_GB(0x555, 0x56);
+          writeByte_GB(0xAAA, 0xA0);
+          /*
+          [ 0xAAA, 0xA9 ],
+          [ 0x555, 0x56 ],
+          [ 0xAAA, 0xA0 ],
+          [ "PA", "PD" ]
+          */
           // Write current byte
           writeByte_GB(currAddr + currByte, sdBuffer[currByte]);
 
