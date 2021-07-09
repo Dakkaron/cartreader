@@ -102,7 +102,11 @@ Si5351 clockgen;
 #include <RGBTools.h>
 
 // Set pins of red, green and blue
-RGBTools rgb(12, 11, 10);
+#ifdef led_common_cathode
+RGBTools rgb(12, 11, 10, COMMON_CATHODE);
+#else
+RGBTools rgb(12, 11, 10, COMMON_ANODE);
+#endif
 
 typedef enum COLOR_T {
   blue_color,

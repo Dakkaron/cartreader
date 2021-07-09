@@ -15,6 +15,9 @@
 // Enable the second button
 #define enable_Button2
 
+// Invert polarity of led. Requires common pin of the LED to be soldered to GND!
+//#define led_common_cathode
+
 // Read N64 Eeprom with Adadruit clockgen, CLK1 switch needs to be switch to ON
 #define clockgen_installed
 
